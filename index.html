@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passordbeskyttet side</title>
+  <script>
+    function sjekkPassord() {
+      var passord = document.getElementById("passord").value;
+      if (passord === "hemmelig123") {
+        document.getElementById("innhold").style.display = "block";
+        document.getElementById("login").style.display = "none";
+      } else {
+        alert("Feil passord!");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="login">
+    <h2>Skriv inn passord:</h2>
+    <input type="password" id="passord">
+    <button onclick="sjekkPassord()">Logg inn</button>
+  </div>
+
+  <div id="innhold" style="display:none;">
+    <h1>Velkommen!</h1>
+    <p>Du har logget inn riktig.</p>
+  </div>
+</body>
+</html>
