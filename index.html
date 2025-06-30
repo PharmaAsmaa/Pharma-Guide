@@ -16,6 +16,14 @@
       height: 100vh;
       margin: 0;
     }
+  #logo {
+  position: fixed;
+  top: 20px;    /* Avstand fra toppen, juster etter behov */
+  left: 20px;   /* Avstand fra venstre, juster etter behov */
+  width: 80px;  /* Sett ønsket bredde */
+  height: auto; /* Behold proporsjonene */
+  z-index: 1000; /* Sørger for at logoen alltid ligger over annet innhold */
+}
     #login, #innhold {
       background: rgba(255, 255, 255, 0.95);
       padding: 30px 40px;
@@ -63,6 +71,7 @@
   </script>
 </head>
 <body>
+  <img src="logo.png" alt="Logo" id="logo">
   <div id="login">
     <h2>Skriv inn passord:</h2>
     <input type="password" id="passord">
