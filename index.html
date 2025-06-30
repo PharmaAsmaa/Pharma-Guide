@@ -24,6 +24,31 @@
   height: auto; /* Behold proporsjonene */
   z-index: 1000; /* Sørger for at logoen alltid ligger over annet innhold */
 }
+    #ressurser h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#ressurser section {
+  margin-bottom: 30px;
+}
+#ressurser h3 {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+#ressurser ul {
+  list-style: disc inside;
+  padding-left: 0;
+}
+#ressurser a {
+  color: #007bff;
+  text-decoration: none;
+}
+#ressurser a:hover {
+  text-decoration: underline;
+}
+    
     #login, #innhold {
       background: rgba(255, 255, 255, 0.95);
       padding: 30px 40px;
@@ -81,6 +106,33 @@
   <div id="innhold" style="display:none;">
     <h1>Velkommen!</h1>
     <p>Du har logget inn riktig.</p>
+    <div id="ressurser" style="max-width: 700px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: left;">
+  <h2>Gode råd og tips</h2>
+
+  <section id="hudpleie">
+    <h3>Hudpleie</h3>
+    <ul>
+      <li><a href="hudpleie1.pdf" target="_blank" rel="noopener">Tips for tørr hud (PDF)</a></li>
+      <li><a href="hudpleie2.pdf" target="_blank" rel="noopener">Råd ved akne (PDF)</a></li>
+    </ul>
+  </section>
+
+  <section id="selvvalg">
+    <h3>Selvvalg</h3>
+    <ul>
+      <li><a href="selvvalg1.pdf" target="_blank" rel="noopener">Velge riktig behandling (PDF)</a></li>
+      <li><a href="selvvalg2.pdf" target="_blank" rel="noopener">Livsstilsråd (PDF)</a></li>
+    </ul>
+  </section>
+
+  <section id="reseptpliktige">
+    <h3>Reseptpliktige legemidler</h3>
+    <ul>
+      <li><a href="resept1.pdf" target="_blank" rel="noopener">Informasjon om legemidler (PDF)</a></li>
+      <li><a href="resept2.pdf" target="_blank" rel="noopener">Sikker bruk av reseptpliktige medisiner (PDF)</a></li>
+    </ul>
+  </section>
+</div>
   </div>
 </body>
 </html>
