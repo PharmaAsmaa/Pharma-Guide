@@ -16,39 +16,38 @@
       height: 100vh;
       margin: 0;
     }
-  #logo {
-  position: fixed;
-  top: 20px;    /* Avstand fra toppen, juster etter behov */
-  left: 20px;   /* Avstand fra venstre, juster etter behov */
-  width: 160px;  /* Sett ønsket bredde */
-  height: auto; /* Behold proporsjonene */
-  z-index: 1000; /* Sørger for at logoen alltid ligger over annet innhold */
-}
+    #logo {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 160px;
+      height: auto;
+      z-index: 1000;
+    }
     #ressurser h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-#ressurser section {
-  margin-bottom: 30px;
-}
-#ressurser h3 {
-  color: #007bff;
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
-}
-#ressurser ul {
-  list-style: disc inside;
-  padding-left: 0;
-}
-#ressurser a {
-  color: #007bff;
-  text-decoration: none;
-}
-#ressurser a:hover {
-  text-decoration: underline;
-}
-    
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #ressurser section {
+      margin-bottom: 30px;
+    }
+    #ressurser h3 {
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    #ressurser ul {
+      list-style: disc inside;
+      padding-left: 0;
+    }
+    #ressurser a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    #ressurser a:hover {
+      text-decoration: underline;
+    }
     #login, #innhold {
       background: rgba(255, 255, 255, 0.95);
       padding: 30px 40px;
@@ -80,15 +79,92 @@
     }
   </style>
   <script>
+    // Struktur for mapper og filer
+    const ressurser = {
+      "Vaksinasjon": [
+        { name: "Vaksineinfo1.pdf", path: "Vaksinasjon/Vaksineinfo1.pdf" },
+        { name: "Vaksineinfo2.pdf", path: "Vaksinasjon/Vaksineinfo2.pdf" }
+      ],
+      "Viktige lover og forskrifter": [
+        { name: "Lov1.pdf", path: "Viktige lover og forskrifter/Lov1.pdf" },
+        { name: "Forskrift1.pdf", path: "Viktige lover og forskrifter/Forskrift1.pdf" }
+      ],
+      "Aposys": {
+        "Undermappe1": [
+          { name: "Aposys1.pdf", path: "Aposys/Undermappe1/Aposys1.pdf" }
+        ],
+        "Undermappe2": [
+          { name: "Aposys2.pdf", path: "Aposys/Undermappe2/Aposys2.pdf" }
+        ]
+      },
+      "Apotek veiledning": {
+        "Veiledning1": [
+          { name: "Fil1.pdf", path: "Apotek veiledning/Veiledning1/Fil1.pdf" }
+        ]
+      }
+    };
+
+    // Funksjon for å vise ressurser dynamisk
+    function visRessurser() {
+      const container = document.getElementById("ressurser");
+      container.innerHTML = "<h2>Gode råd og tips</h2>"; // Overskrift
+
+      for (let mappe in ressurser) {
+        const section = document.createElement("section");
+        const h3 = document.createElement("h3");
+        h3.textContent = mappe;
+        section.appendChild(h3);
+
+        const liste = document.createElement("ul");
+        const innhold = ressurser[mappe];
+
+        if (Array.isArray(innhold)) {
+          // Ingen undermapper, bare filer
+          innhold.forEach(fil => {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = fil.path;
+            a.textContent = fil.name;
+            a.target = "_blank";
+            li.appendChild(a);
+            liste.appendChild(li);
+          });
+        } else {
+          // Mapper med undermapper
+          for (let undermappe in innhold) {
+            const liM = document.createElement("li");
+            liM.textContent = undermappe;
+
+            const ulSub = document.createElement("ul");
+            innhold[undermappe].forEach(fil => {
+              const li = document.createElement("li");
+              const a = document.createElement("a");
+              a.href = fil.path;
+              a.textContent = fil.name;
+              a.target = "_blank";
+              li.appendChild(a);
+              ulSub.appendChild(li);
+            });
+
+            liM.appendChild(ulSub);
+            liste.appendChild(liM);
+          }
+        }
+
+        section.appendChild(liste);
+        container.appendChild(section);
+      }
+    }
+
+    // Passordfunksjon
     function sjekkPassord() {
       var passord = document.getElementById("passord").value;
       if (passord === "hemmelig123") {
         document.getElementById("innhold").style.display = "block";
         document.getElementById("login").style.display = "none";
-        // Fjern bakgrunnsbilde etter innlogging:
         document.body.style.backgroundImage = "none";
-        // Evt. endre bakgrunnsfarge hvis ønskelig:
         document.body.style.backgroundColor = "#f5f5f5";
+        visRessurser(); // Generer mapper og filer etter innlogging
       } else {
         alert("Feil passord!");
       }
@@ -107,32 +183,8 @@
     <h1>Velkommen!</h1>
     <p>Du har logget inn riktig.</p>
     <div id="ressurser" style="max-width: 700px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: left;">
-  <h2>Gode råd og tips</h2>
-
-  <section id="hudpleie">
-    <h3>Hudpleie</h3>
-    <ul>
-      <li><a href="hudpleie1.pdf" target="_blank" rel="noopener">Tips for tørr hud (PDF)</a></li>
-      <li><a href="hudpleie2.pdf" target="_blank" rel="noopener">Råd ved akne (PDF)</a></li>
-    </ul>
-  </section>
-
-  <section id="selvvalg">
-    <h3>Selvvalg</h3>
-    <ul>
-      <li><a href="selvvalg1.pdf" target="_blank" rel="noopener">Velge riktig behandling (PDF)</a></li>
-      <li><a href="selvvalg2.pdf" target="_blank" rel="noopener">Livsstilsråd (PDF)</a></li>
-    </ul>
-  </section>
-
-  <section id="reseptpliktige">
-    <h3>Reseptpliktige legemidler</h3>
-    <ul>
-      <li><a href="resept1.pdf" target="_blank" rel="noopener">Informasjon om legemidler (PDF)</a></li>
-      <li><a href="resept2.pdf" target="_blank" rel="noopener">Sikker bruk av reseptpliktige medisiner (PDF)</a></li>
-    </ul>
-  </section>
-</div>
+      <!-- Mapper og PDF-filer vil genereres her -->
+    </div>
   </div>
 </body>
 </html>
