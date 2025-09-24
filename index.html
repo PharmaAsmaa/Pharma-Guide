@@ -76,6 +76,14 @@
     ul li a:hover {
       text-decoration: underline;
     }
+    #tilbakeBtn {
+      display: block;
+      margin-bottom: 20px;
+      background: #f44336;
+    }
+    #tilbakeBtn:hover {
+      background: #d32f2f;
+    }
   </style>
   <script>
     const ressurser = {
@@ -116,9 +124,9 @@
 
     function visMappe(mappeNavn) {
       const mappeDiv = document.getElementById("mappeInnhold");
-      mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
-      const innhold = ressurser[mappeNavn];
+      mappeDiv.innerHTML = `<button id="tilbakeBtn" onclick="tilbakeTilHoved()">Tilbake til hovedside</button><h2>${mappeNavn}</h2>`;
 
+      const innhold = ressurser[mappeNavn];
       const ul = document.createElement("ul");
 
       if (Array.isArray(innhold)) {
@@ -162,7 +170,6 @@
     <button onclick="sjekkPassord()">Logg inn</button>
   </div>
 
-  <!-- Hovedside med mapper -->
   <div id="innhold" style="display:none;">
     <h1>Velkommen!</h1>
     <p>Du har logget inn riktig.</p>
@@ -172,10 +179,8 @@
     <div class="mappe" onclick="visMappe('Apotek veiledning')">Apotek veiledning</div>
   </div>
 
-  <!-- Side som viser filer/undermapper -->
   <div id="mappeInnhold" style="display:none;">
-    <button onclick="tilbakeTilHoved()">Tilbake</button>
-    <!-- PDF-lenker og undermapper blir lagt her -->
+    <!-- Tilbake-knappen og innhold genereres her -->
   </div>
 </body>
 </html>
