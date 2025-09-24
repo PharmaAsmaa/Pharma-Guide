@@ -31,6 +31,8 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
     input[type="password"] {
       width: 100%;
@@ -86,27 +88,43 @@
     }
   </style>
   <script>
+    // Oppdatert struktur for dine PDF-filer og mapper
     const ressurser = {
       "Vaksinasjon": [
-        { name: "Vaksineinfo1.pdf", path: "Vaksinasjon/Vaksineinfo1.pdf" },
-        { name: "Vaksineinfo2.pdf", path: "Vaksinasjon/Vaksineinfo2.pdf" }
+        { name: "Registrering av vaksiner.pdf", path: "Vaksinasjon/Registrering av vaksiner.pdf" },
+        { name: "Håndtering av hjertestans.pdf", path: "Vaksinasjon/Håndtering av hjertestans.pdf" },
+        { name: "Håndtering av anafylaktisk reaksjon.pdf", path: "Vaksinasjon/Håndtering av anafylaktisk reaksjon.pdf" },
+        { name: "Håndtering av besvimelse.pdf", path: "Vaksinasjon/Håndtering av besvimelse.pdf" },
+        { name: "Rett injeksjonsteknikk.pdf", path: "Vaksinasjon/Rett injeksjonsteknikk.pdf" },
+        { name: "Rekonstituering av Shingrix vaksine.pdf", path: "Vaksinasjon/Rekonstituering av Shingrix vaksine.pdf" },
+        { name: "Klargjoring av bord og utstyr.pdf", path: "Vaksinasjon/Klargjoring av bord og utstyr.pdf" }
       ],
       "Viktige lover og forskrifter": [
-        { name: "Lov1.pdf", path: "Viktige lover og forskrifter/Lov1.pdf" },
-        { name: "Forskrift1.pdf", path: "Viktige lover og forskrifter/Forskrift1.pdf" }
+        { name: "Bilkjøring ved legemiddelbehandling.pdf", path: "Viktige lover og forskrifter/Bilkjøring ved legemiddelbehandling.pdf" },
+        { name: "Refusjonsordninger for legemidler.pdf", path: "Viktige lover og forskrifter/Refusjonsordninger for legemidler.pdf" },
+        { name: "LAR - Legemiddelassistert rehabilitering i apotek.pdf", path: "Viktige lover og forskrifter/LAR - Legemiddelassistert rehabilitering i apotek.pdf" },
+        { name: "Mottak og istandgjoring av resepter.pdf", path: "Viktige lover og forskrifter/Mottak og istandgjoring av resepter.pdf" }
       ],
       "Aposys": {
-        "Undermappe1": [
-          { name: "Aposys1.pdf", path: "Aposys/Undermappe1/Aposys1.pdf" }
-        ],
-        "Undermappe2": [
-          { name: "Aposys2.pdf", path: "Aposys/Undermappe2/Aposys2.pdf" }
-        ]
+        "Refusjonsoppgjør": [],
+        "Registrering av inhalasjonsveiledning og medisinstartsamtalen": [],
+        "Kundeportalen (Orderkunder)": [],
+        "Reseptur": [],
+        "Kasse": []
       },
       "Apotek veiledning": {
-        "Veiledning1": [
-          { name: "Fil1.pdf", path: "Apotek veiledning/Veiledning1/Fil1.pdf" }
-        ]
+        "Autoimmune og relaterte sykdommer": [],
+        "Stoffskiftesykdommer": [],
+        "Plager forårsaket av parasitter, orm, innsekter": [],
+        "Hudlidelser (Dermatosis)": [],
+        "Infertilitetsbehandling, antikonsepsjon og hormonerstatning": [],
+        "Hjerte- og karsykdommer": [],
+        "Veterinærmedisin": [],
+        "CNS-lidelser": [],
+        "Antibiotika": [],
+        "Lungesykdommer": [],
+        "Selvvalg": [],
+        "Hudpleie": []
       }
     };
 
@@ -180,7 +198,7 @@
   </div>
 
   <div id="mappeInnhold" style="display:none;">
-    <!-- Tilbake-knappen og innhold genereres her -->
+    <!-- Tilbake-knapp og innhold genereres her -->
   </div>
 </body>
 </html>
