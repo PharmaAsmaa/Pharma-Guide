@@ -1,17 +1,21 @@
+/* Grunnleggende styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-image: url('Images/Jurnal%20terindeks%20Scopus%20tentang%20Farmasi.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  color: #333;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  padding: 20px;
 }
 
+/* Logo */
 #logo {
   position: fixed;
   top: 20px;
@@ -21,75 +25,136 @@ body {
   z-index: 1000;
 }
 
-#login, #innhold, #mappeInnhold {
+/* Login box */
+#login {
   background: rgba(255, 255, 255, 0.95);
-  padding: 30px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 40px 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   text-align: center;
-  width: 400px;
-  max-height: 90vh;
-  overflow-y: auto;
+  max-width: 400px;
+  width: 100%;
 }
 
-input[type="password"] {
+#login h2 {
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+#login input {
   width: 100%;
-  padding: 10px;
-  margin: 15px 0 20px 0;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 4px;
   font-size: 16px;
 }
 
-button {
+#login button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
   background: #007bff;
   color: white;
-  border: none;
-  padding: 12px 0;
-  width: 100%;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background: #0056b3;
-}
-
-.mappe {
-  background: #e3f2fd;
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.mappe:hover {
-  background: #bbdefb;
+#login button:hover {
+  background: #0056b3;
 }
 
+/* Hovedinnhold */
+#innhold h1 {
+  color: #007bff;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#innhold p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* Mapper */
+.mappe-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.mappe {
+  background: #e3f2fd;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.mappe:hover {
+  background: #bbdefb;
+  transform: translateY(-5px);
+}
+
+/* Mappe innhold */
+#mappeInnhold {
+  background: rgba(255,255,255,0.95);
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+#tilbakeBtn {
+  background: #f44336;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#tilbakeBtn:hover {
+  background: #d32f2f;
+}
+
+/* Liste av PDF-filer */
 ul {
-  text-align: left;
   padding-left: 20px;
+  list-style: none;
+}
+
+ul li {
+  margin-bottom: 12px;
 }
 
 ul li a {
   color: #007bff;
   text-decoration: none;
+  font-weight: 500;
+  transition: 0.2s;
 }
 
 ul li a:hover {
   text-decoration: underline;
+  color: #0056b3;
 }
 
-#tilbakeBtn {
-  display: block;
-  margin-bottom: 20px;
-  background: #f44336;
+/* Animasjon */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
 
-#tilbakeBtn:hover {
-  background: #d32f2f;
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
