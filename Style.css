@@ -1,15 +1,25 @@
+/* Global styling */
 body {
   font-family: Arial, sans-serif;
   background-image: url('Images/Jurnal%20terindeks%20Scopus%20tentang%20Farmasi.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   margin: 0;
+  color: #333;
+}
+
+.hidden {
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 #logo {
@@ -21,23 +31,27 @@ body {
   z-index: 1000;
 }
 
-#login, #innhold, #mappeInnhold {
+/* Kortdesign for innhold */
+.card {
   background: rgba(255, 255, 255, 0.95);
   padding: 30px 40px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   text-align: center;
   width: 400px;
+  max-width: 95%;
   max-height: 90vh;
   overflow-y: auto;
+  transition: all 0.3s ease;
 }
 
+/* Input og knapper */
 input[type="password"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 15px 0 20px 0;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 16px;
 }
 
@@ -47,29 +61,47 @@ button {
   border: none;
   padding: 12px 0;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 16px;
   cursor: pointer;
   margin-top: 10px;
+  transition: background 0.3s;
 }
 
 button:hover {
   background: #0056b3;
 }
 
+/* Grid for mapper */
+.grid-mapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
 .mappe {
   background: #e3f2fd;
+  border-radius: 10px;
   padding: 20px;
-  margin: 10px 0;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s;
+}
+
+.mappe i {
+  color: #007bff;
+  margin-bottom: 10px;
 }
 
 .mappe:hover {
   background: #bbdefb;
+  transform: translateY(-3px);
 }
 
+/* List styling for undermapper */
 ul {
   text-align: left;
   padding-left: 20px;
@@ -92,4 +124,12 @@ ul li a:hover {
 
 #tilbakeBtn:hover {
   background: #d32f2f;
+}
+
+/* Responsivt */
+@media (max-width: 500px) {
+  .card {
+    width: 95%;
+    padding: 20px;
+  }
 }
