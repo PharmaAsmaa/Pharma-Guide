@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Passordbeskyttet side</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <img src="Images/IMG_0337.jpeg" alt="Logo" id="logo">
+
+  <div id="login">
+    <h2>Skriv inn passord:</h2>
+    <input type="password" id="passord">
+    <button onclick="sjekkPassord()">Logg inn</button>
+  </div>
+
+  <div id="innhold" style="display:none;">
+    <h1>Velkommen!</h1>
+    <p>Du har logget inn riktig.</p>
+    <div class="mappe" onclick="visMappe('Vaksinasjon')">Vaksinasjon</div>
+    <div class="mappe" onclick="visMappe('Viktige lover og forskrifter')">Viktige lover og forskrifter</div>
+    <div class="mappe" onclick="visMappe('Aposys')">Aposys</div>
+    <div class="mappe" onclick="visMappe('Veiledning i apotek')">Veiledning i apotek</div>
+  </div>
+
+  <div id="mappeInnhold" style="display:none;">
+    <!-- Tilbake-knapp og innhold genereres her -->
+  </div>
+</body>
+</html>
