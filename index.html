@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>PharmaAsmaa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Logo-container som viser navn + bilde -->
+  <div id="logoContainer" onclick="tilbakeTilHoved()">
+    <h1>PharmaAsmaa</h1>
+    <img src="Images/IMG_0337.jpeg" alt="Logo">
+  </div>
+
+  <!-- Login-boks -->
+  <div id="login">
+    <h2>Skriv inn passord:</h2>
+    <input type="password" id="passord" placeholder="••••••••">
+    <button onclick="sjekkPassord()">Logg inn</button>
+  </div>
+
+  <!-- Hovedinnhold -->
+  <div id="innhold" style="display:none;">
+    <h1>Velkommen!</h1>
+    <p>Du har logget inn riktig 🎉</p>
+    <div class="mappe" onclick="visMappe('Vaksinasjon')">📂 Vaksinasjon</div>
+    <div class="mappe" onclick="visMappe('Viktige lover og forskrifter')">📂 Viktige lover og forskrifter</div>
+    <div class="mappe" onclick="visMappe('Aposys')">📂 Aposys</div>
+    <div class="mappe" onclick="visMappe('Veiledning i apotek')">📂 Veiledning i apotek</div>
+  </div>
+
+  <!-- Mappeinnhold -->
+  <div id="mappeInnhold" style="display:none;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
