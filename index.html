@@ -20,15 +20,17 @@
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 140px;
-  height: 140px;        /* tvungen kvadratisk ramme */
-  border-radius: 50%;
-  object-fit: contain;  /* gjør at hele bildet (inkl. tekst) vises */
-  background: white;    /* legger bakgrunn så ikke tomrommet blir gjennomsiktig */
-  padding: 8px;
+  width: 180px;         /* gjør logoen litt større */
+  height: auto;
+  z-index: 1000;
+  border-radius: 20px;  /* rundede hjørner i stedet for sirkel */
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
+  object-fit: contain;  /* viser hele bildet */
+  background: white;    /* hvit bakgrunn i tilfelle bilde har gjennomsiktige områder */
+  padding: 6px;         /* liten margin rundt for å puste */
 }
+
     
     #logo:hover {
       transform: rotate(-5deg) scale(1.05);
