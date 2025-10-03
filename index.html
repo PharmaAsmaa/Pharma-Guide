@@ -268,16 +268,16 @@
     };
 
     function sjekkPassord() {
-      var passord = document.getElementById("passord").value;
-      if (passord === "hemmelig123") {
-        document.getElementById("login").style.display = "none";
-        document.getElementById("innhold").style.display = "block";
-        document.getElementById("logo").style.display = "block"; // 👈 vis logo etter login
-        document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
-      } else {
-        alert("Feil passord!");
-      }
-    }
+  var passord = document.getElementById("passord").value;
+  if (passord === "hemmelig123") {
+    alert("Velkommen! 🎉");  // <-- Pop up-melding
+    document.getElementById("login").style.display = "none";
+    document.getElementById("innhold").style.display = "block";
+    document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
+  } else {
+    alert("Feil passord!");
+  }
+}
 
     function visMappe(mappeNavn, sti = null) {
       const mappeDiv = document.getElementById("mappeInnhold");
