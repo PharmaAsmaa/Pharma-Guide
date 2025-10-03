@@ -2,7 +2,7 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>Passordbeskyttet side</title>
+  <title>PharmaAsmaa</title>
   <style>
     body {
       font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -16,24 +16,39 @@
       margin: 0;
     }
 
-    #logo {
+    /* --- Logo container --- */
+    #logoContainer {
       position: fixed;
-      top: 20px;
+      top: 15px;
       left: 20px;
-      width: 180px;
-      height: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
       z-index: 1000;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
-      object-fit: contain;
-      background: white;
-      padding: 6px;
-      cursor: pointer; /* 👈 gjør logo klikkbar */
-      display: none;   /* 👈 skjult frem til login */
+      display: none; /* skjules frem til login */
     }
 
-    #logo:hover {
+    #logoContainer h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: bold;
+      color: #2c3e50;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    #logoContainer img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+      background: white;
+      padding: 4px;
+    }
+
+    #logoContainer img:hover {
       transform: rotate(-5deg) scale(1.05);
     }
 
@@ -143,8 +158,12 @@
         width: 90%;
         padding: 25px;
       }
-      #logo {
-        width: 100px;
+      #logoContainer h1 {
+        font-size: 20px;
+      }
+      #logoContainer img {
+        width: 40px;
+        height: 40px;
       }
     }
   </style>
@@ -268,17 +287,17 @@
     };
 
     function sjekkPassord() {
-  var passord = document.getElementById("passord").value;
-  if (passord === "hemmelig123") {
-    alert("Velkommen! 🎉");  // <-- Pop up-melding
-    document.getElementById("login").style.display = "none";
-    document.getElementById("innhold").style.display = "block";
-    document.getElementById("logo").style.display = "block"; // 👈 viser logoen
-    document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
-  } else {
-    alert("Feil passord!");
-  }
-}
+      var passord = document.getElementById("passord").value;
+      if (passord === "hemmelig123") {
+        alert("Velkommen! 🎉");
+        document.getElementById("login").style.display = "none";
+        document.getElementById("innhold").style.display = "block";
+        document.getElementById("logoContainer").style.display = "flex"; // 👈 viser logo + navn
+        document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
+      } else {
+        alert("Feil passord!");
+      }
+    }
 
     function visMappe(mappeNavn, sti = null) {
       const mappeDiv = document.getElementById("mappeInnhold");
@@ -312,8 +331,11 @@
   </script>
 </head>
 <body>
-  <!-- Logo som hjem-knapp -->
-  <img src="Images/IMG_0337.jpeg" alt="Logo" id="logo" onclick="tilbakeTilHoved()">
+  <!-- Logo-container som viser navn + bilde -->
+  <div id="logoContainer" onclick="tilbakeTilHoved()">
+    <h1>PharmaAsmaa</h1>
+    <img src="Images/IMG_0337.jpeg" alt="Logo">
+  </div>
 
   <div id="login">
     <h2>Skriv inn passord:</h2>
@@ -333,5 +355,6 @@
   <div id="mappeInnhold" style="display:none;"></div>
 </body>
 </html>
+
 
 
