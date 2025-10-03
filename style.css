@@ -1,0 +1,164 @@
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  background-attachment: fixed;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* --- Logo container --- */
+#logoContainer {
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 1000;
+  display: none; /* skjules frem til login */
+}
+
+#logoContainer h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: bold;
+  color: #2c3e50;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+#logoContainer img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+  background: white;
+  padding: 4px;
+}
+
+#logoContainer img:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+/* Boksene */
+#login, #innhold, #mappeInnhold {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: fadeIn 0.8s ease;
+}
+
+h1, h2 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+input[type="password"]:focus {
+  border-color: #74ebd5;
+  box-shadow: 0 0 8px rgba(116,235,213,0.6);
+}
+
+button {
+  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  color: white;
+  border: none;
+  padding: 14px 0;
+  width: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+/* Mapper */
+.mappe {
+  background: rgba(173, 216, 230, 0.7);
+  padding: 18px;
+  margin: 12px 0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.mappe:hover {
+  background: rgba(135, 206, 250, 0.9);
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+ul {
+  text-align: left;
+  padding-left: 20px;
+  list-style: none;
+}
+ul li {
+  margin: 8px 0;
+}
+ul li a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+ul li a:hover {
+  text-decoration: underline;
+  color: #0056b3;
+}
+
+#tilbakeBtn {
+  display: inline-block;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #f77062, #fe5196);
+}
+#tilbakeBtn:hover {
+  background: linear-gradient(135deg, #e84118, #c23616);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+  #login, #innhold, #mappeInnhold {
+    width: 90%;
+    padding: 25px;
+  }
+  #logoContainer h1 {
+    font-size: 20px;
+  }
+  #logoContainer img {
+    width: 40px;
+    height: 40px;
+  }
+}
