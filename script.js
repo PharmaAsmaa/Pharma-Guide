@@ -115,8 +115,6 @@ const ressurser = {
 };
 
 
-let loggetInn = false; // starter som ikke logget inn
-
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
   if (passord === "hemmelig123") {
@@ -124,18 +122,18 @@ function sjekkPassord() {
     document.getElementById("login").style.display = "none";
     document.getElementById("innhold").style.display = "block";
     document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
-    loggetInn = true; // nå er brukeren logget inn
+    loggetInn = true;
+
+    // Kun nå aktiver logo
+    document.getElementById("logo").style.cursor = "pointer";
+    document.getElementById("logo").onclick = function() {
+      tilbakeTilHoved();
+    };
   } else {
     alert("Feil passord!");
   }
 }
 
-// Logo klikker
-document.getElementById("logo").onclick = function() {
-  if (loggetInn) {
-    tilbakeTilHoved();
-  }
-};
 
 
 // Vis mappeinnhold
