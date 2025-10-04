@@ -162,3 +162,56 @@ ul li a:hover {
     height: 40px;
   }
 }
+
+/* Container for undermapper */
+.undermapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Hver undermappe / lenke */
+.undermappe {
+  background: white;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c3e50;
+  text-decoration: none; /* Fjern understrek fra lenker */
+  transition: all 0.3s ease;
+  flex: 1 1 200px; /* responsive kort */
+  max-width: 250px;
+}
+
+.undermappe:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #e0f7fa, #e6eeff);
+  color: #004d66;
+}
+
+/* Tilbake-knapp */
+.tilbakeKnapp {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, #f77062, #fe5196);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.tilbakeKnapp:hover {
+  background: linear-gradient(135deg, #e84118, #c23616);
+  transform: translateY(-2px);
+}
+
