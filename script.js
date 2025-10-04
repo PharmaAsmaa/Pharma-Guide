@@ -184,7 +184,19 @@ if (Array.isArray(innhold)) {
   mappeDiv.appendChild(container);
   document.getElementById("innhold").style.display = "none";
   mappeDiv.style.display = "block";
+  // Legg til i nettleserens historikk
+  history.pushState({ mappe: mappeNavn, sti: sti }, mappeNavn, "");
 }
+
+window.addEventListener("popstate", function(event) {
+  if (event.state && event.state.mappe) {
+    visMappe(event.state.mappe, event.state.sti);
+  } else {
+    // Ingen historikk-data → vis hovedsiden
+    document.getElementById("innhold").style.display = "block";
+    document.getElementById("mappeInnhold").style.display = "none";
+  }
+});
 
 // Tilbake til hoved
 function tilbakeTilHoved() {
