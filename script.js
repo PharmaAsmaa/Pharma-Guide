@@ -115,24 +115,27 @@ const ressurser = {
 };
 
 
+let loggetInn = false;
+
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
   if (passord === "hemmelig123") {
     alert("Velkommen til PharmaAsmaa! 🎉");
     document.getElementById("login").style.display = "none";
     document.getElementById("innhold").style.display = "block";
-    document.body.style.background = "linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%)";
     loggetInn = true;
 
-    // Kun nå aktiver logo
-    document.getElementById("logo").style.cursor = "pointer";
-    document.getElementById("logo").onclick = function() {
+    // Aktiver logo som klikkbar
+    const logoContainer = document.getElementById("logoContainer");
+    logoContainer.style.cursor = "pointer";
+    logoContainer.onclick = function() {
       tilbakeTilHoved();
     };
   } else {
     alert("Feil passord!");
   }
 }
+
 
 
 
