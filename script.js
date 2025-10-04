@@ -125,16 +125,30 @@ function sjekkPassord() {
     document.getElementById("innhold").style.display = "block";
     loggetInn = true;
 
-    // Aktiver logo som klikkbar
+    // Gjør logoen klikkbar
     const logoContainer = document.getElementById("logoContainer");
     logoContainer.style.cursor = "pointer";
     logoContainer.onclick = function() {
-      tilbakeTilHoved();
+      if (loggetInn) {
+        tilbakeTilHoved();
+      }
     };
   } else {
     alert("Feil passord!");
   }
 }
+
+function tilbakeTilHoved() {
+  const innhold = document.getElementById("innhold");
+  const mappeInnhold = document.getElementById("mappeInnhold");
+
+  // Hvis vi allerede er på hovedsiden, gjør ingenting
+  if (mappeInnhold.style.display === "block") {
+    innhold.style.display = "block";
+    mappeInnhold.style.display = "none";
+  }
+}
+
 
 
 
