@@ -20,7 +20,7 @@ body {
   gap: 12px;
   cursor: pointer;
   z-index: 1000;
-  display: none; /* skjules frem til login */
+  /* display: none; /* skjules frem til login */
 }
 
 #logoContainer h1 {
