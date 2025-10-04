@@ -135,14 +135,7 @@ ul li a:hover {
   color: #0056b3;
 }
 
-#tilbakeBtn {
-  display: inline-block;
-  margin-bottom: 20px;
-  background: linear-gradient(135deg, #f77062, #fe5196);
-}
-#tilbakeBtn:hover {
-  background: linear-gradient(135deg, #e84118, #c23616);
-}
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
