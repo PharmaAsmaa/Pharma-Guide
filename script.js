@@ -154,11 +154,11 @@ function tilbakeTilHoved() {
 
 // Vis mappeinnhold
 function visMappe(mappeNavn, sti = null) {
-  const mappeDiv = document.getElementById("mappeInnhold");
-  mappeDiv.innerHTML = `<button id="tilbakeBtn" onclick="tilbakeTilHoved()">← Tilbake</button><h2>${mappeNavn}</h2>`;
-  const innhold = sti ? sti : ressurser[mappeNavn];
-const container = document.createElement("div");
-container.className = "undermapper";
+ const mappeDiv = document.getElementById("mappeInnhold");
+ mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
+ const innhold = sti ? sti : ressurser[mappeNavn];
+ const container = document.createElement("div");
+ container.className = "undermapper";
 
 if (Array.isArray(innhold)) {
   // Filer
