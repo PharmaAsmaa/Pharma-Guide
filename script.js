@@ -158,23 +158,31 @@ function visMappe(mappeNavn, sti = null) {
   const mappeDiv = document.getElementById("mappeInnhold");
   mappeDiv.innerHTML = `<button id="tilbakeBtn" onclick="tilbakeTilHoved()">← Tilbake</button><h2>${mappeNavn}</h2>`;
   const innhold = sti ? sti : ressurser[mappeNavn];
-  const ul = document.createElement("ul");
+const container = document.createElement("div");
+container.className = "undermapper";
 
-  if (Array.isArray(innhold)) {
-    innhold.forEach(fil => {
-      const li = document.createElement("li");
-      li.innerHTML = `<a href="${fil.path}" target="_blank">${fil.name}</a>`;
-      ul.appendChild(li);
-    });
-  } else {
-    for (let undermappe in innhold) {
-      const li = document.createElement("li");
-      li.innerHTML = `<span style="cursor:pointer;color:#007bff;" onclick="visMappe('${undermappe}', ressurser['${mappeNavn}']['${undermappe}'])">${undermappe}</span>`;
-      ul.appendChild(li);
-    }
+if (Array.isArray(innhold)) {
+  // Filer
+  innhold.forEach(fil => {
+    const link = document.createElement("a");
+    link.className = "undermappe";
+    link.href = fil.path;
+    link.target = "_blank";
+    link.textContent = fil.name;
+    container.appendChild(link);
+  });
+} else {
+  // Undermapper
+  for (let undermappe in innhold) {
+    const div = document.createElement("a");
+    div.className = "undermappe";
+    div.textContent = undermappe;
+    div.onclick = () => visMappe(undermappe, ressurser[mappeNavn][undermappe]);
+    container.appendChild(div);
   }
+}
 
-  mappeDiv.appendChild(ul);
+  mappeDiv.appendChild(container);
   document.getElementById("innhold").style.display = "none";
   mappeDiv.style.display = "block";
 }
