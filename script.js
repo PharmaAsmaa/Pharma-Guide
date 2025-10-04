@@ -120,7 +120,7 @@ let loggetInn = false;
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
   if (passord === "hemmelig123") {
-    alert("Velkommen til PharmaAsmaa! 🎉");
+    // alert("Velkommen til PharmaAsmaa! 🎉");
     document.getElementById("login").style.display = "none";
     document.getElementById("innhold").style.display = "block";
     loggetInn = true;
