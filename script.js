@@ -166,6 +166,9 @@ function loggUt() {
   localStorage.removeItem("loggetInn");
   loggetInn = false;
 
+  // Tilbakestill hash først
+  location.hash = "";
+
   // Skjul logg ut-knappen
   document.getElementById("loggUtBtn").style.display = "none";
 
@@ -182,10 +185,8 @@ function loggUt() {
   if (passordFelt) {
     passordFelt.value = "";
   }
-
-  // Tilbakestill hash
-  location.hash = "";
 }
+
 
 
 // Når hash endres (bruker klikker < > i nettleser)
