@@ -164,14 +164,20 @@ function sjekkPassord() {
 function loggUt() {
   localStorage.removeItem("loggetInn");
   loggetInn = false;
-  location.hash = "";
 
-  document.getElementById("login").style.display = "block";
+  // Skjul logg ut-knappen med en gang
+  const loggUtBtn = document.getElementById("loggUtBtn");
+  loggUtBtn.style.display = "none";
+
+  // Skjul hovedinnhold og mappeinnhold
   document.getElementById("innhold").style.display = "none";
   document.getElementById("mappeInnhold").style.display = "none";
 
-  // Skjul logg ut-knappen
-  document.getElementById("loggUtBtn").style.display = "none";
+  // Vis login-boksen
+  document.getElementById("login").style.display = "block";
+
+  // Tilbakestill hash
+  location.hash = "";
 }
 
 
