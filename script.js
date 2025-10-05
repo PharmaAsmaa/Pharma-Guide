@@ -115,7 +115,10 @@ const ressurser = {
 };
 
 
+
+// --- LOGIN ---
 let loggetInn = false;
+let mappeSti = [];
 
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
@@ -124,12 +127,13 @@ function sjekkPassord() {
     document.getElementById("innhold").style.display = "block";
     loggetInn = true;
 
-    // Gjør logoen klikkbar
     const logoContainer = document.getElementById("logoContainer");
     logoContainer.style.cursor = "pointer";
-    logoContainer.onclick = function() {
+    logoContainer.onclick = function () {
       if (loggetInn) {
-        tilbakeTilHoved();
+        mappeSti = [];
+        history.pushState({}, "", "");
+        window.dispatchEvent(new PopStateEvent("popstate"));
       }
     };
   } else {
@@ -137,37 +141,25 @@ function sjekkPassord() {
   }
 }
 
-function tilbakeTilHoved() {
-  const innhold = document.getElementById("innhold");
-  const mappeInnhold = document.getElementById("mappeInnhold");
-
-  // Hvis vi allerede er på hovedsiden, gjør ingenting
-  if (mappeInnhold.style.display === "block") {
-    innhold.style.display = "block";
-    mappeInnhold.style.display = "none";
-  }
-}
-
-
-
-// Vis mappeinnhold
-function visMappe(mappeNavn, sti = null) {
+// --- VIS MAPPE ---
+function visMappe(mappeNavn, sti = null, fraPopstate = false) {
   const mappeDiv = document.getElementById("mappeInnhold");
+  const innholdDiv = document.getElementById("innhold");
   const innhold = sti ? sti : ressurser[mappeNavn];
-  const container = document.createElement("div");
-  container.className = "undermapper";
 
   mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
+  const container = document.createElement("div");
+  container.className = "undermapper";
   mappeDiv.appendChild(container);
 
-  // Skjul hovedinnhold, vis valgt mappe
-  document.getElementById("innhold").style.display = "none";
+  innholdDiv.style.display = "none";
   mappeDiv.style.display = "block";
 
-  // 🔹 Legg til historikk slik at du kan gå tilbake/frem med nettleserens piler
-  history.pushState({ mappe: mappeNavn, sti: sti }, "", `#${mappeNavn}`);
+  if (!fraPopstate) {
+    mappeSti.push({ navn: mappeNavn, sti: sti });
+    history.pushState({ sti: [...mappeSti] }, "", "");
+  }
 
-  // Hvis det er filer (liste)
   if (Array.isArray(innhold)) {
     innhold.forEach(fil => {
       const link = document.createElement("a");
@@ -177,33 +169,29 @@ function visMappe(mappeNavn, sti = null) {
       link.textContent = fil.name;
       container.appendChild(link);
     });
-  } 
-  // Hvis det er undermapper (objekt)
-  else {
+  } else {
     for (let undermappe in innhold) {
       const div = document.createElement("a");
       div.className = "undermappe";
       div.textContent = undermappe;
-      div.onclick = () => visMappe(undermappe, innhold[undermappe]); // ✅ riktig sti videre
+      div.onclick = () => visMappe(undermappe, innhold[undermappe]);
       container.appendChild(div);
     }
   }
 }
 
-// Håndter tilbake/frem-knapper i nettleseren
-window.addEventListener("popstate", function(event) {
-  if (event.state && event.state.mappe) {
-    visMappe(event.state.mappe, event.state.sti);
+// --- TILBAKE/FREM i NETTLESER ---
+window.addEventListener("popstate", (event) => {
+  const mappeDiv = document.getElementById("mappeInnhold");
+  const innholdDiv = document.getElementById("innhold");
+
+  if (event.state && event.state.sti && event.state.sti.length > 0) {
+    mappeSti = event.state.sti;
+    const siste = mappeSti[mappeSti.length - 1];
+    visMappe(siste.navn, siste.sti, true);
   } else {
-    // Tilbake til hovedsiden
-    document.getElementById("mappeInnhold").style.display = "none";
-    document.getElementById("innhold").style.display = "block";
+    mappeSti = [];
+    innholdDiv.style.display = "block";
+    mappeDiv.style.display = "none";
   }
 });
-
-
-// Tilbake til hoved
-function tilbakeTilHoved() {
-  document.getElementById("innhold").style.display = "block";
-  document.getElementById("mappeInnhold").style.display = "none";
-}
