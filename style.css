@@ -154,7 +154,7 @@ button:hover {
   display: none; /* vises bare når man er logget inn */
   position: fixed;
   top: 15px;
-  right: 20px;
+  right: 15px;
   padding: 6px 14px;
   font-size: 13px;
   font-weight: 600;
