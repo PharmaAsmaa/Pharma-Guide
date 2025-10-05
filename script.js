@@ -166,9 +166,6 @@ function loggUt() {
   localStorage.removeItem("loggetInn");
   loggetInn = false;
 
-  // Tilbakestill hash først
-  location.hash = "";
-
   // Skjul logg ut-knappen
   document.getElementById("loggUtBtn").style.display = "none";
 
@@ -182,10 +179,12 @@ function loggUt() {
 
   // Tøm passordfeltet
   const passordFelt = document.getElementById("passord");
-  if (passordFelt) {
-    passordFelt.value = "";
-  }
+  if (passordFelt) passordFelt.value = "";
+
+  // Tilbakestill hash uten å trigge visning
+  history.pushState("", document.title, window.location.pathname + window.location.search);
 }
+
 
 
 
@@ -193,6 +192,7 @@ function loggUt() {
 window.addEventListener("hashchange", oppdaterVisningFraHash);
 
 function oppdaterVisningFraHash() {
+  if (!loggetInn) return; // stopper alt hvis man ikke er logget inn
   const hash = decodeURIComponent(location.hash.slice(1)); // fjerner #
   const mappeDiv = document.getElementById("mappeInnhold");
   const hoved = document.getElementById("innhold");
