@@ -123,6 +123,9 @@ function loggInnUtenPassord() {
   document.getElementById("login").style.display = "none";
   document.getElementById("innhold").style.display = "block";
 
+  const loggUtBtn = document.getElementById("loggUtBtn");
+ loggUtBtn.style.display = "inline-block"; // viser knappen
+
   const logo = document.getElementById("logoContainer");
   logo.style.cursor = "pointer";
   logo.onclick = () => {
