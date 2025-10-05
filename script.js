@@ -167,8 +167,7 @@ function loggUt() {
   loggetInn = false;
 
   // Skjul logg ut-knappen
-  const loggUtBtn = document.getElementById("loggUtBtn");
-  loggUtBtn.style.display = "none";
+  document.getElementById("loggUtBtn").style.display = "none";
 
   // Skjul hovedinnhold og mappeinnhold
   document.getElementById("innhold").style.display = "none";
@@ -179,7 +178,10 @@ function loggUt() {
   loginBoks.style.display = "block";
 
   // Tøm passordfeltet
-  document.getElementById("passord").value = "";
+  const passordFelt = document.getElementById("passord");
+  if (passordFelt) {
+    passordFelt.value = "";
+  }
 
   // Tilbakestill hash
   location.hash = "";
