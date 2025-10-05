@@ -165,9 +165,13 @@ function loggUt() {
   localStorage.removeItem("loggetInn");
   loggetInn = false;
   location.hash = "";
+
   document.getElementById("login").style.display = "block";
   document.getElementById("innhold").style.display = "none";
   document.getElementById("mappeInnhold").style.display = "none";
+
+  // Skjul logg ut-knappen
+  document.getElementById("loggUtBtn").style.display = "none";
 }
 
 
