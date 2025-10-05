@@ -1,6 +1,7 @@
+/* --- Body --- */
 body {
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  background: linear-gradient(135deg, #ff9ac2 0%, #fbc2eb 100%);
   background-attachment: fixed;
   color: #333;
   display: flex;
@@ -20,7 +21,6 @@ body {
   gap: 12px;
   cursor: pointer;
   z-index: 1000;
-  /* display: none; /* skjules frem til login */
 }
 
 #logoContainer h1 {
@@ -46,7 +46,7 @@ body {
   transform: rotate(-5deg) scale(1.05);
 }
 
-/* Boksene */
+/* --- Boksene --- */
 #login, #innhold, #mappeInnhold {
   background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(12px);
@@ -65,6 +65,7 @@ h1, h2 {
   color: #2c3e50;
 }
 
+/* --- Passordfelt --- */
 input[type="password"] {
   width: 100%;
   padding: 12px;
@@ -76,12 +77,13 @@ input[type="password"] {
   transition: 0.3s;
 }
 input[type="password"]:focus {
-  border-color: #74ebd5;
-  box-shadow: 0 0 8px rgba(116,235,213,0.6);
+  border-color: #ff6f91;
+  box-shadow: 0 0 8px rgba(255,111,145,0.6);
 }
 
+/* --- Knappene --- */
 button {
-  background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+  background: linear-gradient(135deg, #ff9ac2, #fbc2eb);
   color: white;
   border: none;
   padding: 14px 0;
@@ -99,9 +101,9 @@ button:hover {
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
-/* Mapper */
+/* --- Mapper --- */
 .mappe {
-  background: rgba(173, 216, 230, 0.7);
+  background: rgba(255, 182, 193, 0.7);
   padding: 18px;
   margin: 12px 0;
   border-radius: 12px;
@@ -112,11 +114,65 @@ button:hover {
   transition: all 0.3s ease;
 }
 .mappe:hover {
-  background: rgba(135, 206, 250, 0.9);
+  background: rgba(255, 105, 180, 0.9);
   transform: scale(1.03);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* --- Undermapper --- */
+.undermapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.undermappe {
+  background: white;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  color: #2c3e50;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  flex: 1 1 200px;
+  max-width: 250px;
+}
+.undermappe:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+  color: #800040;
+}
+
+/* --- Logg ut-knappen --- */
+#loggUtBtn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  background-color: #ff6f91;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+}
+#loggUtBtn:hover {
+  background-color: #ff4f7a;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* --- Lenker i listene --- */
 ul {
   text-align: left;
   padding-left: 20px;
@@ -126,22 +182,22 @@ ul li {
   margin: 8px 0;
 }
 ul li a {
-  color: #007bff;
+  color: #ff6f91;
   text-decoration: none;
   font-weight: 500;
 }
 ul li a:hover {
   text-decoration: underline;
-  color: #0056b3;
+  color: #ff4f7a;
 }
 
-
-
+/* --- Fade-in animasjon --- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Mobilvennlig --- */
 @media (max-width: 600px) {
   #login, #innhold, #mappeInnhold {
     width: 90%;
@@ -156,51 +212,4 @@ ul li a:hover {
   }
 }
 
-/* Container for undermapper */
-.undermapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-/* Hver undermappe / lenke */
-.undermappe {
-  background: white;
-  padding: 18px 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  cursor: pointer;
-  text-align: center;
-  font-weight: 500;
-  font-size: 16px;
-  color: #2c3e50;
-  text-decoration: none; /* Fjern understrek fra lenker */
-  transition: all 0.3s ease;
-  flex: 1 1 200px; /* responsive kort */
-  max-width: 250px;
-}
-
-.undermappe:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-  background: linear-gradient(135deg, #e0f7fa, #e6eeff);
-  color: #004d66;
-}
-
-#loggUtBtn {
-  display: none; /* knappen vises bare når man er logget inn */
-  position: fixed; /* gjør at knappen ligger fast på skjermen */
-  top: 10px;      /* avstand fra toppen */
-  left: 10px;     /* avstand fra venstre kant */
-  padding: 8px 12px;
-  font-size: 14px;
-  cursor: pointer;
-  background-color: #f44336; /* rød farge, kan endres */
-  color: white;
-  border: none;
-  border-radius: 4px;
-  z-index: 1000; /* sikrer at den ligger over alt annet */
-}
 
