@@ -150,53 +150,57 @@ function tilbakeTilHoved() {
 
 
 
-
-
 // Vis mappeinnhold
 function visMappe(mappeNavn, sti = null) {
- const mappeDiv = document.getElementById("mappeInnhold");
- mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
- const innhold = sti ? sti : ressurser[mappeNavn];
- const container = document.createElement("div");
- container.className = "undermapper";
+  const mappeDiv = document.getElementById("mappeInnhold");
+  const innhold = sti ? sti : ressurser[mappeNavn];
+  const container = document.createElement("div");
+  container.className = "undermapper";
 
-if (Array.isArray(innhold)) {
-  // Filer
-  innhold.forEach(fil => {
-    const link = document.createElement("a");
-    link.className = "undermappe";
-    link.href = fil.path;
-    link.target = "_blank";
-    link.textContent = fil.name;
-    container.appendChild(link);
-  });
-} else {
-  // Undermapper
-  for (let undermappe in innhold) {
-    const div = document.createElement("a");
-    div.className = "undermappe";
-    div.textContent = undermappe;
-    div.onclick = () => visMappe(undermappe, ressurser[mappeNavn][undermappe]);
-    container.appendChild(div);
+  mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
+  mappeDiv.appendChild(container);
+
+  // Skjul hovedinnhold, vis valgt mappe
+  document.getElementById("innhold").style.display = "none";
+  mappeDiv.style.display = "block";
+
+  // 🔹 Legg til historikk slik at du kan gå tilbake/frem med nettleserens piler
+  history.pushState({ mappe: mappeNavn, sti: sti }, "", `#${mappeNavn}`);
+
+  // Hvis det er filer (liste)
+  if (Array.isArray(innhold)) {
+    innhold.forEach(fil => {
+      const link = document.createElement("a");
+      link.className = "undermappe";
+      link.href = fil.path;
+      link.target = "_blank";
+      link.textContent = fil.name;
+      container.appendChild(link);
+    });
+  } 
+  // Hvis det er undermapper (objekt)
+  else {
+    for (let undermappe in innhold) {
+      const div = document.createElement("a");
+      div.className = "undermappe";
+      div.textContent = undermappe;
+      div.onclick = () => visMappe(undermappe, innhold[undermappe]); // ✅ riktig sti videre
+      container.appendChild(div);
+    }
   }
 }
 
-  mappeDiv.appendChild(container);
-  document.getElementById("innhold").style.display = "none";
-  mappeDiv.style.display = "block";
-  // Legg til i nettleserens historikk
-  history.pushState({ mappe: mappeNavn, sti: sti }, mappeNavn, "");
-}
-
+// Håndter tilbake/frem-knapper i nettleseren
 window.addEventListener("popstate", function(event) {
   if (event.state && event.state.mappe) {
     visMappe(event.state.mappe, event.state.sti);
   } else {
-    // Ingen historikk-data → vis hovedsiden
-    document.getElementById("innhold").style.display = "block";
+    // Tilbake til hovedsiden
     document.getElementById("mappeInnhold").style.display = "none";
+    document.getElementById("innhold").style.display = "block";
   }
 });
+
 
 // Tilbake til hoved
 function tilbakeTilHoved() {
