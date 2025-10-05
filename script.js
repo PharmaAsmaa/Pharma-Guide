@@ -115,10 +115,7 @@ const ressurser = {
 };
 
 
-
-// --- LOGIN ---
 let loggetInn = false;
-let mappeSti = [];
 
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
@@ -127,71 +124,73 @@ function sjekkPassord() {
     document.getElementById("innhold").style.display = "block";
     loggetInn = true;
 
-    const logoContainer = document.getElementById("logoContainer");
-    logoContainer.style.cursor = "pointer";
-    logoContainer.onclick = function () {
-      if (loggetInn) {
-        mappeSti = [];
-        history.pushState({}, "", "");
-        window.dispatchEvent(new PopStateEvent("popstate"));
-      }
+    const logo = document.getElementById("logoContainer");
+    logo.style.cursor = "pointer";
+    logo.onclick = () => {
+      location.hash = ""; // tilbake til hovedsiden
     };
+
+    oppdaterVisningFraHash(); // åpne korrekt mappe hvis hash finnes
   } else {
     alert("Feil passord!");
   }
 }
 
-// --- VIS MAPPE ---
-function visMappe(mappeNavn, sti = null, fraPopstate = false) {
-  const mappeDiv = document.getElementById("mappeInnhold");
-  const innholdDiv = document.getElementById("innhold");
-  const innhold = sti ? sti : ressurser[mappeNavn];
+// Når hash endres (bruker klikker < > i nettleser)
+window.addEventListener("hashchange", oppdaterVisningFraHash);
 
-  mappeDiv.innerHTML = `<h2>${mappeNavn}</h2>`;
+function oppdaterVisningFraHash() {
+  const hash = decodeURIComponent(location.hash.slice(1)); // fjerner #
+  const mappeDiv = document.getElementById("mappeInnhold");
+  const hoved = document.getElementById("innhold");
+
+  if (!hash) {
+    mappeDiv.style.display = "none";
+    hoved.style.display = "block";
+    return;
+  }
+
+  const sti = hash.split("/");
+  let innhold = ressurser;
+  let navn = "";
+
+  for (let del of sti) {
+    if (innhold && innhold[del]) {
+      innhold = innhold[del];
+      navn = del;
+    }
+  }
+
+  if (!innhold) return;
+
+  mappeDiv.innerHTML = `<h2>${navn}</h2>`;
   const container = document.createElement("div");
   container.className = "undermapper";
   mappeDiv.appendChild(container);
 
-  innholdDiv.style.display = "none";
+  hoved.style.display = "none";
   mappeDiv.style.display = "block";
-
-  if (!fraPopstate) {
-    mappeSti.push({ navn: mappeNavn, sti: sti });
-    history.pushState({ sti: [...mappeSti] }, "", "");
-  }
 
   if (Array.isArray(innhold)) {
     innhold.forEach(fil => {
-      const link = document.createElement("a");
-      link.className = "undermappe";
-      link.href = fil.path;
-      link.target = "_blank";
-      link.textContent = fil.name;
-      container.appendChild(link);
+      const a = document.createElement("a");
+      a.className = "undermappe";
+      a.href = fil.path;
+      a.target = "_blank";
+      a.textContent = fil.name;
+      container.appendChild(a);
     });
   } else {
     for (let undermappe in innhold) {
-      const div = document.createElement("a");
-      div.className = "undermappe";
-      div.textContent = undermappe;
-      div.onclick = () => visMappe(undermappe, innhold[undermappe]);
-      container.appendChild(div);
+      const a = document.createElement("a");
+      a.className = "undermappe";
+      a.textContent = undermappe;
+      a.href = `#${hash}/${undermappe}`;
+      container.appendChild(a);
     }
   }
 }
 
-// --- TILBAKE/FREM i NETTLESER ---
-window.addEventListener("popstate", (event) => {
-  const mappeDiv = document.getElementById("mappeInnhold");
-  const innholdDiv = document.getElementById("innhold");
-
-  if (event.state && event.state.sti && event.state.sti.length > 0) {
-    mappeSti = event.state.sti;
-    const siste = mappeSti[mappeSti.length - 1];
-    visMappe(siste.navn, siste.sti, true);
-  } else {
-    mappeSti = [];
-    innholdDiv.style.display = "block";
-    mappeDiv.style.display = "none";
-  }
-});
+function visMappe(mappeNavn) {
+  location.hash = encodeURIComponent(mappeNavn);
+}
