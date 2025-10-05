@@ -117,24 +117,52 @@ const ressurser = {
 
 let loggetInn = false;
 
+// Funksjon for automatisk innlogging fra localStorage
+function loggInnUtenPassord() {
+  loggetInn = true;
+  document.getElementById("login").style.display = "none";
+  document.getElementById("innhold").style.display = "block";
+
+  const logo = document.getElementById("logoContainer");
+  logo.style.cursor = "pointer";
+  logo.onclick = () => {
+    location.hash = ""; // tilbake til hovedsiden
+  };
+
+  oppdaterVisningFraHash(); // åpne korrekt mappe hvis hash finnes
+}
+
+// Når siden lastes
+window.onload = function() {
+  const lagretInnlogging = localStorage.getItem("loggetInn");
+  if (lagretInnlogging === "true") {
+    loggInnUtenPassord();
+  } else {
+    document.getElementById("login").style.display = "block";
+    document.getElementById("innhold").style.display = "none";
+  }
+};
+
+
 function sjekkPassord() {
   const passord = document.getElementById("passord").value;
   if (passord === "hemmelig123") {
-    document.getElementById("login").style.display = "none";
-    document.getElementById("innhold").style.display = "block";
-    loggetInn = true;
-
-    const logo = document.getElementById("logoContainer");
-    logo.style.cursor = "pointer";
-    logo.onclick = () => {
-      location.hash = ""; // tilbake til hovedsiden
-    };
-
-    oppdaterVisningFraHash(); // åpne korrekt mappe hvis hash finnes
+    localStorage.setItem("loggetInn", "true"); // husk innlogging
+    loggInnUtenPassord();
   } else {
     alert("Feil passord!");
   }
 }
+
+function loggUt() {
+  localStorage.removeItem("loggetInn");
+  loggetInn = false;
+  location.hash = "";
+  document.getElementById("login").style.display = "block";
+  document.getElementById("innhold").style.display = "none";
+  document.getElementById("mappeInnhold").style.display = "none";
+}
+
 
 // Når hash endres (bruker klikker < > i nettleser)
 window.addEventListener("hashchange", oppdaterVisningFraHash);
