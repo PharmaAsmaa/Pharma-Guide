@@ -124,7 +124,7 @@ function loggInnUtenPassord() {
   document.getElementById("innhold").style.display = "block";
 
   const loggUtBtn = document.getElementById("loggUtBtn");
- loggUtBtn.style.display = "inline-block"; // viser knappen
+  loggUtBtn.style.display = "inline-block"; // viser knappen
 
   const logo = document.getElementById("logoContainer");
   logo.style.cursor = "pointer";
@@ -137,6 +137,10 @@ function loggInnUtenPassord() {
 
 // Når siden lastes
 window.onload = function() {
+  // Koble loggUt-knappen én gang
+  const loggUtBtn = document.getElementById("loggUtBtn");
+  loggUtBtn.addEventListener("click", loggUt);
+
   const lagretInnlogging = localStorage.getItem("loggetInn");
   if (lagretInnlogging === "true") {
     loggInnUtenPassord();
