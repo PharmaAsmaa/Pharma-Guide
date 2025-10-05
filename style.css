@@ -189,22 +189,4 @@ ul li a:hover {
   color: #004d66;
 }
 
-/* Tilbake-knapp */
-.tilbakeKnapp {
-  display: inline-block;
-  margin-bottom: 20px;
-  padding: 10px 18px;
-  background: linear-gradient(135deg, #f77062, #fe5196);
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.tilbakeKnapp:hover {
-  background: linear-gradient(135deg, #e84118, #c23616);
-  transform: translateY(-2px);
-}
 
