@@ -162,10 +162,11 @@ function sjekkPassord() {
 }
 
 function loggUt() {
+  // Fjern innlogging fra localStorage
   localStorage.removeItem("loggetInn");
   loggetInn = false;
 
-  // Skjul logg ut-knappen med en gang
+  // Skjul logg ut-knappen
   const loggUtBtn = document.getElementById("loggUtBtn");
   loggUtBtn.style.display = "none";
 
@@ -174,7 +175,11 @@ function loggUt() {
   document.getElementById("mappeInnhold").style.display = "none";
 
   // Vis login-boksen
-  document.getElementById("login").style.display = "block";
+  const loginBoks = document.getElementById("login");
+  loginBoks.style.display = "block";
+
+  // Tøm passordfeltet
+  document.getElementById("passord").value = "";
 
   // Tilbakestill hash
   location.hash = "";
