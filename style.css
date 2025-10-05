@@ -189,4 +189,18 @@ ul li a:hover {
   color: #004d66;
 }
 
+#loggUtBtn {
+  display: none; /* knappen vises bare når man er logget inn */
+  position: fixed; /* gjør at knappen ligger fast på skjermen */
+  top: 10px;      /* avstand fra toppen */
+  left: 10px;     /* avstand fra venstre kant */
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #f44336; /* rød farge, kan endres */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  z-index: 1000; /* sikrer at den ligger over alt annet */
+}
 
